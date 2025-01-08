@@ -1,0 +1,51 @@
+#Posible solucion al ejercicio https://retosdeprogramacion.com/ejercicios/
+# Crea un programa que dibuje un cuadrado o un triángulo con asteriscos "*".
+#  - Indicaremos el tamaño del lado y si la figura a dibujar es una u otra.
+#  - EXTRA: ¿Eres capaz de dibujar más figuras?
+
+def poligono(lado, poligono):
+    def cuadrado(lado):
+        for i in range(lado + 1):
+            if i == 0 or i == lado:
+                print(lado * " *")
+            else:
+                print(" *"+"  "*(lado - 2) +" *")
+
+    def triangulo(lado):
+        for i in range(1, lado + 1):
+            espacios = " " * (lado - i)
+            estrellas = "*" * (2 * i - 1)
+            print(espacios + estrellas)
+            
+    def rombo(lado):
+        #Lado superior
+        for i in range(1, lado+1):
+            espacios = " " * (lado - i)
+            estrellas = "*" * (2 * i -1)
+            print(espacios + estrellas)
+        #lado inferior
+        for i in range(lado - 1, 0, -1):
+            espacios = " " * (lado - i)
+            estrellas = "*" * (2 * i - 1)
+            print(espacios + estrellas)
+            
+    def trapecio(lado):
+        base_menor = lado
+        base_mayor = lado * 2
+        altura = lado
+        
+        for i in range(altura):
+            longitud_fila = base_menor + i * ((base_mayor - base_menor) // (altura - 1))
+            
+            espacios = (base_mayor - longitud_fila)//2
+            print(" " * espacios + "*" * longitud_fila)
+            
+            
+    if poligono == "cuadrado":
+        return cuadrado(lado)
+    elif poligono == "triangulo":
+        return triangulo(lado)
+    elif poligono == "rombo":
+        rombo(lado)
+    elif poligono == "trapecio":
+        trapecio(lado)
